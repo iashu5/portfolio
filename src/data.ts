@@ -127,12 +127,13 @@ export const experience = [
 
 export type Project = {
   title: string;
-  tag: '.NET' | 'Full Stack' | 'React';
+  tag: '.NET' | 'Full Stack' | 'React' | 'Frontend';
   description: string;
   highlights: string[];
   flow: string[];
   tech: string[];
   links: { label: string; url: string }[];
+  live?: string;
 };
 
 export const projects: Project[] = [
@@ -188,6 +189,39 @@ export const projects: Project[] = [
     flow: ['Header', 'Sidebar', 'Content', 'Tailwind'],
     tech: ['React 18', 'TypeScript', 'Vite', 'Tailwind CSS'],
     links: [{ label: 'Code', url: 'https://github.com/iashu5/knowledge-base-ui' }],
+  },
+  {
+    title: 'MediCare · Hospital Dashboard',
+    tag: 'React',
+    description:
+      'Hospital management dashboard with sign-in, patient registration, appointment booking, a calendar, invoices, payments and patient medical summaries.',
+    highlights: ['Charts & data grids', 'Formik + Yup validation', 'Light & dark theme'],
+    flow: ['Sign In', 'React Router', 'MUI Data Grid', 'Nivo Charts'],
+    tech: ['React 18', 'Material-UI', 'Redux Toolkit', 'Formik', 'FullCalendar', 'Nivo'],
+    links: [{ label: 'Code', url: 'https://github.com/iashu5/Medicare' }],
+    live: 'https://madicare.netlify.app/',
+  },
+  {
+    title: 'Organs4U · Organ Donation Platform',
+    tag: 'Frontend',
+    description:
+      'Organ-donation website with donor registration and login, donation campaigns with progress tracking, events, testimonials and a payment page.',
+    highlights: ['Multi-page responsive site', 'Donor registration & login', 'Campaign progress tracking'],
+    flow: ['Landing', 'Register / Login', 'Campaigns', 'Payment'],
+    tech: ['HTML5', 'CSS3', 'JavaScript'],
+    links: [{ label: 'Code', url: 'https://github.com/iashu5/Organs4U' }],
+    live: 'https://iashu5.github.io/Organs4U/',
+  },
+  {
+    title: 'Cara · E-commerce Store',
+    tag: 'Frontend',
+    description:
+      'Fashion e-commerce storefront with a product catalogue, product detail pages, a cart that persists in the browser, add-to-cart notifications and a checkout page.',
+    highlights: ['Persistent cart (localStorage)', '8 responsive pages', 'Add-to-cart notifications'],
+    flow: ['Shop', 'Product', 'Cart', 'Payment'],
+    tech: ['HTML5', 'CSS3', 'JavaScript', 'jQuery'],
+    links: [{ label: 'Code', url: 'https://github.com/iashu5/Cara' }],
+    live: 'https://iashu5.github.io/Cara/',
   },
 ];
 

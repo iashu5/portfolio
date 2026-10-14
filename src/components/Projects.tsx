@@ -1,10 +1,10 @@
 import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { ChevronRight, Github } from 'lucide-react';
+import { ChevronRight, ExternalLink, Github } from 'lucide-react';
 import { useState, type MouseEvent } from 'react';
 import { projects, type Project } from '../data';
 import { Section } from './ui';
 
-const filters = ['All', '.NET', 'Full Stack', 'React'] as const;
+const filters = ['All', 'Live', '.NET', 'Full Stack', 'React', 'Frontend'] as const;
 
 function TiltCard({ p }: { p: Project }) {
   const x = useMotionValue(0.5);
@@ -51,7 +51,18 @@ function TiltCard({ p }: { p: Project }) {
         <div className="absolute inset-x-0 top-0 h-1 bg-brand opacity-70" />
 
         <div className="relative flex items-start justify-between gap-3">
-          <span className="chip">{p.tag}</span>
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="chip">{p.tag}</span>
+            {p.live && (
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 text-xs font-semibold text-emerald-700 dark:text-emerald-300">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+                </span>
+                Live
+              </span>
+            )}
+          </div>
           <div className="flex gap-2">
             {p.links.map((l) => (
               <a
@@ -98,6 +109,12 @@ function TiltCard({ p }: { p: Project }) {
             </span>
           ))}
         </div>
+
+        {p.live && (
+          <a href={p.live} target="_blank" rel="noreferrer" className="btn-primary relative mt-5 justify-center !py-2.5">
+            <ExternalLink size={16} /> Live demo
+          </a>
+        )}
       </motion.div>
     </motion.div>
   );
@@ -105,7 +122,7 @@ function TiltCard({ p }: { p: Project }) {
 
 export default function Projects() {
   const [filter, setFilter] = useState<(typeof filters)[number]>('All');
-  const shown = projects.filter((p) => filter === 'All' || p.tag === filter);
+  const shown = projects.filter((p) => filter === 'All' || (filter === 'Live' ? !!p.live : p.tag === filter));
 
   return (
     <Section
@@ -116,7 +133,7 @@ export default function Projects() {
           Things I&apos;ve <span className="text-gradient">built</span>
         </>
       }
-      intro="Personal projects built with the same stack I use at work. The code for each one is on GitHub."
+      intro="Personal projects, from .NET APIs to live web apps. The code for each one is on GitHub, and the ones marked Live can be tried in your browser."
     >
       <div className="mb-8 flex flex-wrap gap-2" role="tablist" aria-label="Filter projects">
         {filters.map((f) => (
