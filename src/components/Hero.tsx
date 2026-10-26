@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Download, Github, Linkedin, Mail, MapPin } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { profile } from '../data';
+import Smoke from './Smoke';
 
 function useTyping(words: string[], speed = 70, pause = 1600) {
   const [text, setText] = useState('');
@@ -49,8 +50,7 @@ export default function Hero() {
     <section id="top" className="relative overflow-hidden pb-16 pt-28 sm:pt-36">
       {/* background */}
       <div className="grid-bg pointer-events-none absolute inset-0" />
-      <div className="pointer-events-none absolute -left-32 top-10 h-80 w-80 animate-blob rounded-full bg-violet-brand/30 blur-3xl dark:bg-violet-brand/25" />
-      <div className="pointer-events-none absolute -right-24 top-40 h-96 w-96 animate-blob rounded-full bg-sky-brand/25 blur-3xl [animation-delay:-5s]" />
+      <Smoke />
 
       <div className="container-x relative grid items-center gap-14 lg:grid-cols-[1.15fr_0.85fr]">
         <div>
